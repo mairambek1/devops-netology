@@ -1,1 +1,2 @@
 # devops-netology
+Omukeev Mairambek
