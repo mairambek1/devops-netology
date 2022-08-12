@@ -1,6 +1,6 @@
 # devops-netology
 Omukeev Mairambek
-Эти файлы будут проигнорированы в будущем 
+Эти файлы будут проигнорированы в будущем 1
 1
 # Local .terraform directories
 **/.terraform/*
