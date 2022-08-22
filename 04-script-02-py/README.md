@@ -40,32 +40,6 @@ for result in result_os.split('\n'):
 #!/usr/bin/env python3
 
 import os
-
-bash_command = [“cd /root/devops-netology”, “git status”]
-result_os = os.popen(’ && ‘.join(bash_command)).read()
-#is_change = False
-for result in result_os.split(’\n’):
-if result.find(‘modified’) != -1:
-prepare_result = result.replace(’\tmodified: ', ‘’)
-print(prepare_result)
-```
-
-### Вывод скрипта при запуске при тестировании:
-```
-root@devops:~# ./test.py
-test.txt
-test2.txt
-```
-
-## Обязательная задача 3
-Доработать скрипт выше так, чтобы он мог проверять не только локальный репозиторий в текущей директории, а также умел воспринимать путь к репозиторию, который мы передаём как входной параметр. Мы точно знаем, что начальство коварное и будет проверять работу этого скрипта в директориях, которые не являются локальными репозиториями.
-
-### Ваш скрипт
-```python
-
-#!/usr/bin/env python3
-
-import os
 import sys
 
 path = "./"
@@ -88,9 +62,60 @@ for result in result_os.split('\n'):
         prepare_result = result.replace('\tmodified:   ', '')
         print(git_top_level + prepare_result)
 ```
+
 ### Вывод скрипта при запуске при тестировании:
 ```
-root@devops:~/devops-netology# ./test2.py
+devops@devops:~/devops-netology$ sudo ./test2.py
+/home/devops/devops-netology/homwork_horoscope.py
+/home/devops/devops-netology/04-script-02-py/README.md
+/home/devops/devops-netology/test2.txt
+```
+
+## Обязательная задача 3
+Доработать скрипт выше так, чтобы он мог проверять не только локальный репозиторий в текущей директории, а также умел воспринимать путь к репозиторию, который мы передаём как входной параметр. Мы точно знаем, что начальство коварное и будет проверять работу этого скрипта в директориях, которые не являются локальными репозиториями.
+
+### Ваш скрипт
+```python
+
+#!/usr/bin/env python3
+
+import os
+
+<<<<<<< HEAD
+path = "./"
+if len(sys.argv) >= 2:
+    path = sys.argv[1]
+    if not os.path.isdir(path):
+          sys.exit("Directory doesn't exist: " + path)
+
+bash_command = ["cd " + path, "git status 2>&1"]
+git_command = ["git rev-parse --show-toplevel"]
+
+result_os = os.popen(' && '.join(bash_command)).read()
+if result_os.find('not a git') != -1:
+    sys.exit("not a git repository: " + path)
+
+git_top_level = (os.popen(' && '.join(git_command)).read()).replace('\n', '/')
+
+for result in result_os.split('\n'):
+    if result.find('modified') != -1:
+        prepare_result = result.replace('\tmodified:   ', '')
+        print(git_top_level + prepare_result)
+=======
+bash_command = ["cd ~/devops-netology", "pwd", "git status"]
+result_os = os.popen(' && '.join(bash_command)).read()
+#is_change = False
+cwd=result_os.split('\n')
+for result in result_os.split('\n'):
+    if result.find('modified') != -1:
+        prepare_result = cwd[0]+'/'+result.replace('\tmodified:   ', '')
+        print(prepare_result)
+        #break
+>>>>>>> dff7fdde478759e16ec4968a17724ef3fa192215
+```
+### Вывод скрипта при запуске при тестировании:
+```
+devops@devops:~$ sudo ./test7.py
 /root/devops-netology/test.txt
 /root/devops-netology/test2.txt
 ```
@@ -104,28 +129,28 @@ root@devops:~/devops-netology# ./test2.py
 import socket
 import time
 service_addr = {
-‘drive.google.com’: ‘0’,
-‘mail.google.com’: ‘0’,
-‘google.com’: ‘0’
+    ‘drive.google.com’: ‘0’,
+    ‘mail.google.com’: ‘0’,
+    ‘google.com’: ‘0’
 }
 #Вывод скрипта при запуске при тестировании:
 
 for item in service_addr:
-initial_addr = socket.gethostbyname(item)
-service_addr[item] = initial_addr
+    initial_addr = socket.gethostbyname(item)
+    service_addr[item] = initial_addr
 
 while True:
 # Перебираем все ключи в словаре
-for item in service_addr:
-old_addr = service_addr[item]
-new_addr = socket.gethostbyname(item)
+    for item in service_addr:
+        old_addr = service_addr[item]
+        new_addr = socket.gethostbyname(item)
 # Если старое и новое не совпадают - адрес изменился. Перезаписываем значение в словаре и выводим ошибку
-if new_addr != old_addr:
-service_addr[item] = new_addr
-print("[ERROR] “+item+” IP mismatch: old IP “+old_addr+”, new IP “+new_addr)
-print(item + " - " + service_addr[item])
-print(”######################################")
-time.sleep(10)
+        if new_addr != old_addr:
+            service_addr[item] = new_addr
+            print("[ERROR] “+item+” IP mismatch: old IP “+old_addr+”, new IP “+new_addr)
+        print(item + " - " + service_addr[item])
+    print(”######################################")
+    time.sleep(10)
 ``` 
 ### Вывод скрипта при запуске при тестировании:
 ```
