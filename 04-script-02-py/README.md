@@ -81,27 +81,6 @@ devops@devops:~/devops-netology$ sudo ./test2.py
 
 import os
 
-<<<<<<< HEAD
-path = "./"
-if len(sys.argv) >= 2:
-    path = sys.argv[1]
-    if not os.path.isdir(path):
-          sys.exit("Directory doesn't exist: " + path)
-
-bash_command = ["cd " + path, "git status 2>&1"]
-git_command = ["git rev-parse --show-toplevel"]
-
-result_os = os.popen(' && '.join(bash_command)).read()
-if result_os.find('not a git') != -1:
-    sys.exit("not a git repository: " + path)
-
-git_top_level = (os.popen(' && '.join(git_command)).read()).replace('\n', '/')
-
-for result in result_os.split('\n'):
-    if result.find('modified') != -1:
-        prepare_result = result.replace('\tmodified:   ', '')
-        print(git_top_level + prepare_result)
-=======
 bash_command = ["cd ~/devops-netology", "pwd", "git status"]
 result_os = os.popen(' && '.join(bash_command)).read()
 #is_change = False
@@ -111,7 +90,7 @@ for result in result_os.split('\n'):
         prepare_result = cwd[0]+'/'+result.replace('\tmodified:   ', '')
         print(prepare_result)
         #break
->>>>>>> dff7fdde478759e16ec4968a17724ef3fa192215
+
 ```
 ### Вывод скрипта при запуске при тестировании:
 ```
