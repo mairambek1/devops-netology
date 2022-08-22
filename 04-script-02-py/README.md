@@ -126,8 +126,8 @@ while True:
             service_addr[item] = new_addr
             print("[ERROR] “+item+” IP mismatch: old IP “+old_addr+”, new IP “+new_addr)
         print(item + " - " + service_addr[item])
-print(”######################################")
-time.sleep(10)
+    print(”######################################")
+    time.sleep(10)
 ``` 
 ### Вывод скрипта при запуске при тестировании:
 ```
