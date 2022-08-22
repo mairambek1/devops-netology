@@ -3,7 +3,7 @@ date = int(input("Введите день рождения:"))
 month = int(input("Введите месяц рождения:"))
 year = int(input("Введите год рождения:"))
 
-if (date>=21 and date<=31 and month==3) or( month==4 and date>=1 and date<=19):
+if (date>=21 and date<=31 and month=='март') or( month=='Апрель' and date>=1 and date<=19):
     print("Знак зодиака:Овен")
 elif (date>=20 and date<=30 and month==4) or( month==5 and date>=1 and date<=20):
     print("Знак зодиака:Телец")
