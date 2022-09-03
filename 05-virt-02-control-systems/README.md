@@ -45,6 +45,17 @@
 - Ansible
 
 *Приложить вывод команд установленных версий каждой из программ, оформленный в markdown.*
+
+```bash
+vagrant@server1:~$ VBoxManage -v
+6.1.34r150636
+```
+
+```bash
+vPS C:\vagrant> vagrant -v
+Vagrant 2.2.19
+```
+
 ```bash
 vagrant@server1:~$ ansible --version
 ansible [core 2.12.8]
