@@ -34,14 +34,29 @@
   - На мой взгляд наиболее надежный метод - Push. При этом методе есть централизованная точка распространения, из который можно следить за ходом выполнения доставки.       Нет необходимости мониторить состояние агентов на удаленных серверах.
 
 
-## Задача 3 
+## Задача 3
 
-Опишите возможные проблемы и недостатки гетерогенной среды виртуализации (использования нескольких систем управления виртуализацией одновременно) и что необходимо сделать для минимизации этих рисков и проблем. Если бы у вас был бы выбор, то создавали ли вы бы гетерогенную среду или нет? Мотивируйте ваш ответ примерами. 
+Установить на личный компьютер:
 
----
+## Решение:
 
-### Как cдавать задание
+- VirtualBox
+- Vagrant
+- Ansible
 
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
+*Приложить вывод команд установленных версий каждой из программ, оформленный в markdown.*
+```bash
+vagrant@server1:~$ ansible --version
+ansible [core 2.12.8]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/vagrant/.ansible/plugins/modules', '/u                                                                                                                                                             sr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
+  ansible collection location = /home/vagrant/.ansible/collections:/usr/share/an                                                                                                                                                             sible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.8.10 (default, Mar 15 2022, 12:22:08) [GCC 9.4.0]
+  jinja version = 2.10.1
+  libyaml = True
+
+```
 
 ---
