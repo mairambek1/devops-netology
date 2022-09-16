@@ -51,6 +51,7 @@ Hey, Netology
 - Подключитесь во второй контейнер и отобразите листинг и содержание файлов в ```/data``` контейнера.
 
 Ответ:
+```
 vagrant@server1:~$ docker run -d -v /data:/data centos sleep infinity
 Unable to find image 'centos:latest' locally
 latest: Pulling from library/centos
@@ -90,9 +91,9 @@ drwxrwxrwt   7 root root 4.0K Sep 15  2021 tmp
 drwxr-xr-x  12 root root 4.0K Sep 15  2021 usr
 drwxr-xr-x  20 root root 4.0K Sep 15  2021 var
 [root@e9cf28d5df25 /]#
-
+```
 debian:
-
+```
 vagrant@server1:~$ docker run -v /data:/data -d debian sleep infinity
 Unable to find image 'debian:latest' locally
 latest: Pulling from library/debian
@@ -133,9 +134,9 @@ dr-xr-xr-x  13 root root    0 Sep 16 11:41 sys
 drwxrwxrwt   2 root root 4.0K Sep 12 00:00 tmp
 drwxr-xr-x  11 root root 4.0K Sep 12 00:00 usr
 drwxr-xr-x  11 root root 4.0K Sep 12 00:00 var
-
+```
 С контейнера под centos создаю в директории файл и файл с хоста
-
+```
 vagrant@server1:~$ docker exec -it e9cf28d5df25 bash
 [root@e9cf28d5df25 /]# echo '' > /data/centos-file-1
 [root@e9cf28d5df25 /]# ls /data
@@ -153,7 +154,7 @@ drwxr-xr-x 1 root root 4.0K Sep 16 11:41 ..
 -rw-r--r-- 1 root root    1 Sep 16 11:44 centos-file-1
 -rw-r--r-- 1 root root    1 Sep 16 11:45 fedora-host-file-2
 root@2aaf49f49d25:/#
-
+```
 
 ## Задача 4 (*)
 
