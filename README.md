@@ -1,3 +1,178 @@
+# Домашнее задание к занятию "3. Введение. Экосистема. Архитектура. Жизненный цикл Docker контейнера"
+
+## Задача 1
+
+Сценарий выполения задачи:
+
+- создайте свой репозиторий на https://hub.docker.com;
+- выберете любой образ, который содержит веб-сервер Nginx;
+- создайте свой fork образа;
+- реализуйте функциональность:
+запуск веб-сервера в фоне с индекс-страницей, содержащей HTML-код ниже:
+```
+<html>
+<head>
+Hey, Netology
+</head>
+<body>
+<h1>I’m DevOps Engineer!</h1>
+</body>
+</html>
+```
+Опубликуйте созданный форк в своем репозитории и предоставьте ответ в виде ссылки на https://hub.docker.com/username_repo.
+Ответ: https://hub.docker.com/r/momukeev/netology
+
+## Задача 2
+
+Посмотрите на сценарий ниже и ответьте на вопрос:
+"Подходит ли в этом сценарии использование Docker контейнеров или лучше подойдет виртуальная машина, физическая машина? Может быть возможны разные варианты?"
+
+Детально опишите и обоснуйте свой выбор.
+
+--
+
+Сценарий:
+
+- Высоконагруженное монолитное java веб-приложение - монолитное веб-приложение предполагает сборку всего в одном месте (frontend, backend, UI). Так как монолитное веб-приложение высоконагруженное, то стоит размещать или на физической среде, или можно использовать пара виртуализацию, если накладными расходами можно пренебречь, однако контейнеризация не подойдет, так предполагается выполнение одного сервиса в рамках контейнера.
+- Nodejs веб-приложение - контейнеризация подойдет для решения задачи, по сути node.js - это условно говоря environment для javascript для построения логики работы веб-приложения, является его частью, модулем, хорошо укладывается в микро сервисную архитектуру.
+- Мобильное приложение c версиями для Android и iOS - предполагается, что приложение имеет своего потребителя, а значит необходим UI для взаимодействия с пользователем. По моему мнению, корректнее всего использовать виртуализацию с реализацией виртуальной машины.
+- Шина данных на базе Apache Kafka - если можно так выразится, то это сервис по трансляции данных из одного формата данных одного приложения в другое. По моему мнению хорошо применить контейнеризацию, так как отсутствуют накладные расходы на виртуализацию, достигается простота масштабирования и управления. В данном случае необходимо организация отказоустойчивости.
+- Elasticsearch кластер для реализации логирования продуктивного веб-приложения - три ноды elasticsearch, два logstash и две ноды kibana - для упомянутых продуктов есть контейнеры на docker hub. Из-за простоты управления и сборки контейнеров, мне кажется необходимо распихать продукты по контейнерам и на основании контейнеров собрать кластер стека ELK. В силу прозрачности реализации, в том числе возможности реализации подходов IaaC, контейнеризация в данном случае помогает закрыть вопросы по менеджменту и что очень важно получить регулярный предсказуемый результат.
+- Мониторинг-стек на базе Prometheus и Grafana  - по моему мнению также как и пример с ELK, скорее всего с течением времени будут вноситься изменения в систему мониторинга и не один раз, будут добавляется метрики, так как точки мониторинга будут меняться - добавляться новый функционал, было бы не плохо применить IaaC в том числе и в этом случае - мониторинг как код, контейнеризация помогает этого добиться.
+- MongoDB, как основное хранилище данных для java-приложения - либо виртуализация, либо контейнеризация, все зависит от реализации архитектуры приложения. Сложно дать вразумительный ответ - никогда не работал с данной БД, затрудняюсь обосновать выбор. Чувствую, что так будет правильно.
+- Gitlab сервер для реализации CI/CD процессов и приватный (закрытый) Docker Registry - отдельный физический сервер или виртуализация, если сервер есть в наличии использовал бы его, но только необходимо оценить доступные объемы хранения данных, в том числе подумать о техническом сопровождении: просчитать затраты на поддержку железа и ЗИП. Если по совокупности поставленных задач будет понятно, что через осязаемое недалекое время мы выйдем за пределы мощностей физ. сервера, то выбрал бы, на перспективу, виртуализацию, однако возможны первичные затраты на доп. железо, но все зависит от проекта. Требуется пред проектная аналитика.
+
+## Задача 3
+
+- Запустите первый контейнер из образа ***centos*** c любым тэгом в фоновом режиме, подключив папку ```/data``` из текущей рабочей директории на хостовой машине в ```/data``` контейнера;
+- Запустите второй контейнер из образа ***debian*** в фоновом режиме, подключив папку ```/data``` из текущей рабочей директории на хостовой машине в ```/data``` контейнера;
+- Подключитесь к первому контейнеру с помощью ```docker exec``` и создайте текстовый файл любого содержания в ```/data```;
+- Добавьте еще один файл в папку ```/data``` на хостовой машине;
+- Подключитесь во второй контейнер и отобразите листинг и содержание файлов в ```/data``` контейнера.
+
+Ответ:
+vagrant@server1:~$ docker run -d -v /data:/data centos sleep infinity
+Unable to find image 'centos:latest' locally
+latest: Pulling from library/centos
+a1d0c7532777: Pull complete
+Digest: sha256:a27fd8080b517143cbbbab9dfb7c8571c40d67d534bbdee55bd6c473f432b177
+Status: Downloaded newer image for centos:latest
+e9cf28d5df2578897da72159620abfefa35c2c00d8bc6068b5f784c511257260
+
+vagrant@server1:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS              PORTS                               NAMES
+e9cf28d5df25   centos    "sleep infinity"         About a minute ago   Up About a minute                                       unruffled_bhaskara
+
+vagrant@server1:~$ docker exec -it e9cf28d5df25 bash
+[root@e9cf28d5df25 /]# ls -lah /
+total 60K
+drwxr-xr-x   1 root root 4.0K Sep 16 11:35 .
+drwxr-xr-x   1 root root 4.0K Sep 16 11:35 ..
+-rwxr-xr-x   1 root root    0 Sep 16 11:35 .dockerenv
+lrwxrwxrwx   1 root root    7 Nov  3  2020 bin -> usr/bin
+drwxr-xr-x   2 root root 4.0K Sep 16 11:35 data
+drwxr-xr-x   5 root root  340 Sep 16 11:35 dev
+drwxr-xr-x   1 root root 4.0K Sep 16 11:35 etc
+drwxr-xr-x   2 root root 4.0K Nov  3  2020 home
+lrwxrwxrwx   1 root root    7 Nov  3  2020 lib -> usr/lib
+lrwxrwxrwx   1 root root    9 Nov  3  2020 lib64 -> usr/lib64
+drwx------   2 root root 4.0K Sep 15  2021 lost+found
+drwxr-xr-x   2 root root 4.0K Nov  3  2020 media
+drwxr-xr-x   2 root root 4.0K Nov  3  2020 mnt
+drwxr-xr-x   2 root root 4.0K Nov  3  2020 opt
+dr-xr-xr-x 188 root root    0 Sep 16 11:35 proc
+dr-xr-x---   2 root root 4.0K Sep 15  2021 root
+drwxr-xr-x  11 root root 4.0K Sep 15  2021 run
+lrwxrwxrwx   1 root root    8 Nov  3  2020 sbin -> usr/sbin
+drwxr-xr-x   2 root root 4.0K Nov  3  2020 srv
+dr-xr-xr-x  13 root root    0 Sep 16 11:35 sys
+drwxrwxrwt   7 root root 4.0K Sep 15  2021 tmp
+drwxr-xr-x  12 root root 4.0K Sep 15  2021 usr
+drwxr-xr-x  20 root root 4.0K Sep 15  2021 var
+[root@e9cf28d5df25 /]#
+
+debian:
+
+vagrant@server1:~$ docker run -v /data:/data -d debian sleep infinity
+Unable to find image 'debian:latest' locally
+latest: Pulling from library/debian
+23858da423a6: Pull complete
+Digest: sha256:3e82b1af33607aebaeb3641b75d6e80fd28d36e17993ef13708e9493e30e8ff9
+Status: Downloaded newer image for debian:latest
+2aaf49f49d25ea6629af62858f8156b9c732199c774754f5e8c0b2a7f94ae5eb
+vagrant@server1:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED             STATUS             PORTS                               NAMES
+2aaf49f49d25   debian    "sleep infinity"         5 seconds ago       Up 4 seconds                                           tender_leakey
+e9cf28d5df25   centos    "sleep infinity"         5 minutes ago       Up 5 minutes                                           unruffled_bhaskara
+c4bd1c8a1313   nginx     "/docker-entrypoint.…"   About an hour ago   Up About an hour   0.0.0.0:80->80/tcp, :::80->80/tcp   nginx-server
+1c00ed4e50d3   nginx     "/docker-entrypoint.…"   2 hours ago         Up 2 hours         80/tcp                              musing_banzai
+08aa6924c40b   nginx     "/docker-entrypoint.…"   3 hours ago         Up 3 hours         80/tcp                              nginx_netology
+vagrant@server1:~$ docker exec -it 2aaf49f49d25 bash
+root@2aaf49f49d25:/# ls -lah /
+total 76K
+drwxr-xr-x   1 root root 4.0K Sep 16 11:41 .
+drwxr-xr-x   1 root root 4.0K Sep 16 11:41 ..
+-rwxr-xr-x   1 root root    0 Sep 16 11:41 .dockerenv
+drwxr-xr-x   2 root root 4.0K Sep 12 00:00 bin
+drwxr-xr-x   2 root root 4.0K Sep  3 12:10 boot
+drwxr-xr-x   2 root root 4.0K Sep 16 11:35 data
+drwxr-xr-x   5 root root  340 Sep 16 11:41 dev
+drwxr-xr-x   1 root root 4.0K Sep 16 11:41 etc
+drwxr-xr-x   2 root root 4.0K Sep  3 12:10 home
+drwxr-xr-x   8 root root 4.0K Sep 12 00:00 lib
+drwxr-xr-x   2 root root 4.0K Sep 12 00:00 lib64
+drwxr-xr-x   2 root root 4.0K Sep 12 00:00 media
+drwxr-xr-x   2 root root 4.0K Sep 12 00:00 mnt
+drwxr-xr-x   2 root root 4.0K Sep 12 00:00 opt
+dr-xr-xr-x 190 root root    0 Sep 16 11:41 proc
+drwx------   2 root root 4.0K Sep 12 00:00 root
+drwxr-xr-x   3 root root 4.0K Sep 12 00:00 run
+drwxr-xr-x   2 root root 4.0K Sep 12 00:00 sbin
+drwxr-xr-x   2 root root 4.0K Sep 12 00:00 srv
+dr-xr-xr-x  13 root root    0 Sep 16 11:41 sys
+drwxrwxrwt   2 root root 4.0K Sep 12 00:00 tmp
+drwxr-xr-x  11 root root 4.0K Sep 12 00:00 usr
+drwxr-xr-x  11 root root 4.0K Sep 12 00:00 var
+
+С контейнера под centos создаю в директории файл и файл с хоста
+
+vagrant@server1:~$ docker exec -it e9cf28d5df25 bash
+[root@e9cf28d5df25 /]# echo '' > /data/centos-file-1
+[root@e9cf28d5df25 /]# ls /data
+centos-file-1
+[root@e9cf28d5df25 /]# echo '' > /data/fedora-host-file-2
+[root@e9cf28d5df25 /]# ls /data
+centos-file-1  fedora-host-file-2
+[root@e9cf28d5df25 /]# exit
+exit
+vagrant@server1:~$ docker exec -it 2aaf49f49d25 bash
+root@2aaf49f49d25:/# ls -lah /data
+total 16K
+drwxr-xr-x 2 root root 4.0K Sep 16 11:45 .
+drwxr-xr-x 1 root root 4.0K Sep 16 11:41 ..
+-rw-r--r-- 1 root root    1 Sep 16 11:44 centos-file-1
+-rw-r--r-- 1 root root    1 Sep 16 11:45 fedora-host-file-2
+root@2aaf49f49d25:/#
+
+
+## Задача 4 (*)
+
+Воспроизвести практическую часть лекции самостоятельно.
+
+Соберите Docker образ с Ansible, загрузите на Docker Hub и пришлите ссылку вместе с остальными ответами к задачам.
+
+
+---
+
+### Как cдавать задание
+
+Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
+
+---
+
+
+
+
 # Домашнее задание к занятию "5.1. Введение в виртуализацию. Типы и функции гипервизоров. Обзор рынка вендоров и областей применения."
 
 ## Задача 1
