@@ -19,8 +19,8 @@
 ```
 docker node ls
 ```
-# Ответ
-
+# Ответ:
+![img.png](дз1.png)
 
 ## Задача 3
 
@@ -30,8 +30,8 @@ docker node ls
 ```
 docker service ls
 ```
-# Ответ
-
+# Ответ:
+![img.png](дз2.png)
 
 ## Задача 4 (*)
 
