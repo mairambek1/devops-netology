@@ -6,6 +6,11 @@
 
 Приведите получившуюся команду или docker-compose манифест.
 
+root@server1:~# docker pull postgres:12
+root@server1:~# docker volume create vol2
+root@server1:~# docker volume create vol1
+root@server1:~# docker run --rm --name pg-docker -e POSTGRES_PASSWORD=postgres -ti -p 5432:5432 -v vol1:/var/lib/postgresql/data -v vol2:/var/lib/postgresql postgres:12
+
 Ответ:
 ![img.png](SQL1.png)
 
