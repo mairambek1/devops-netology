@@ -131,6 +131,19 @@ GRANT DELETE ON TABLE public.orders TO "test-simple-user";
 - приведите в ответе:
     - запросы 
     - результаты их выполнения.
+    
+# Ответ:
+
+insert into orders VALUES (1, 'Шоколад', 10), (2, 'Принтер', 3000), (3, 'Книга', 500), (4, 'Монитор', 7000), (5, 'Гитара', 4000);
+
+insert into clients VALUES (1, 'Иванов Иван Иванович', 'USA'), (2, 'Петров Петр Петрович', 'Canada'), (3, 'Иоганн Себастьян Бах', 'Japan'), (4, 'Ронни Джеймс Дио', 'Russia'), (5, 'Ritchie Blackmore', 'Russia');
+
+select count (*) from orders;
+
+select count (*) from clients;
+
+
+![img.png](SQL5.png)  
 
 ## Задача 4
 
@@ -150,10 +163,6 @@ GRANT DELETE ON TABLE public.orders TO "test-simple-user";
  
 Подсказк - используйте директиву `UPDATE`.
 
-# Ответ:
-![img.png](SQL5.png)
-
-![img.png](SQL6.png)
 
 ## Задача 5
 
