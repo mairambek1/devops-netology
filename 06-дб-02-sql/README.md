@@ -14,7 +14,7 @@ root@server1:~# docker volume create vol1
 
 root@server1:~# docker run --rm --name pg-docker -e POSTGRES_PASSWORD=postgres -ti -p 5432:5432 -v vol1:/var/lib/postgresql/data -v vol2:/var/lib/postgresql postgres:12
 
-#Ответ:
+# Ответ:
 ![img.png](SQL1.png)
 
 ## Задача 2
@@ -44,6 +44,7 @@ root@server1:~# docker run --rm --name pg-docker -e POSTGRES_PASSWORD=postgres -
 - список пользователей с правами над таблицами test_db
 
 # Ответ:
+
 CREATE DATABASE test_db
 CREATE ROLE "test-admin-user" SUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT LOGIN;
 
