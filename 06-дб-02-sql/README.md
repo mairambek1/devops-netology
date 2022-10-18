@@ -100,6 +100,7 @@ GRANT UPDATE ON TABLE public.orders TO "test-simple-user";
 GRANT DELETE ON TABLE public.orders TO "test-simple-user";
 
 ![img.png](SQL3.png)
+![img.png](SQL4.png)
 
 ## Задача 3
 
