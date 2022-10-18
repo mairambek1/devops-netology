@@ -207,7 +207,7 @@ width - средняя ширина строки в байтах
 
 создаем дамп базы данных текстовом формате
 
-g_dump -U postgres test_db > /tmp/dump_test.sql
+pg_dump -U postgres test_db > /tmp/dump_test.sql
 
 останавливаем контейнер
 
