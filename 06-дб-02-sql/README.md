@@ -150,6 +150,11 @@ GRANT DELETE ON TABLE public.orders TO "test-simple-user";
  
 Подсказк - используйте директиву `UPDATE`.
 
+# Ответ:
+![img.png](SQL5.png)
+
+![img.png](SQL6.png)
+
 ## Задача 5
 
 Получите полную информацию по выполнению запроса выдачи всех пользователей из задачи 4 
