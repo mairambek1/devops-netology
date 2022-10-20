@@ -107,10 +107,11 @@ mysql> SELECT TABLE_NAME,ENGINE FROM information_schema.TABLES WHERE TABLE_SCHEM
 - на `MyISAM`
 - на `InnoDB`
 ```
-0.01419125 | ALTER TABLE test_db.orders ENGINE = MyISAM                                                                                                                  0.01788200 | ALTER TABLE test_db.orders ENGINE = InnoDB  
+0.01419125 | ALTER TABLE test_db.orders ENGINE = MyISAM                                                                                                                  
+0.01788200 | ALTER TABLE test_db.orders ENGINE = InnoDB  
 ```
 
-![img.png](msql2.png)
+![img.png](msql3.3.png)
 
 ## Задача 4 
 
