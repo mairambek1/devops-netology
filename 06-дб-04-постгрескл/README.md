@@ -22,7 +22,7 @@ root@acb126381a74:/# psql -h localhost -p 5432 -U postgres -W
 - вывода списка БД                    postgres=# \l
 - подключения к БД                    postgres=# \c
 - вывода списка таблиц                postgres-# \dt
-- вывода описания содержимого таблиц  postgres-# \d[S+]
+- вывода описания содержимого таблиц  postgres-# \d[S+] NAME
 - выхода из psql                      postgres-# \q
 ```
 ![img.png](postgre1.png)
