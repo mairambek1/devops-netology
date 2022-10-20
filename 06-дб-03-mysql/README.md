@@ -64,6 +64,7 @@ create user 'test'@'localhost'
 Предоставьте привелегии пользователю `test` на операции SELECT базы `test_db`.
 ```
 mysql> grant select on test_db. to test@'localhost';
+mysql> flush privileges;
 ```    
 Используя таблицу INFORMATION_SCHEMA.USER_ATTRIBUTES получите данные по пользователю `test` и 
 **приведите в ответе к задаче**.
