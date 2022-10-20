@@ -6,17 +6,7 @@
 
 root@server1:~# docker pull mysql:8.0
 
-b52042432ab3: Pull complete
-
-Digest: sha256:12bae50f531fef9dc7726072446cd7c4b461eaa154611659c891a0d9f628684f
-
-Status: Downloaded newer image for mysql:8.0
-
-docker.io/library/mysql:8.0
-
 root@server1:~# docker volume create vol_mysql
-
-vol_mysql
 
 root@server1:~# docker run --rm --name mysql-docker -e MYSQL_ROOT_PASSWORD=mysql -ti -p 3306:3306 -v vol_mysql:/etc/mysql/ mysql:8.0
 
@@ -34,12 +24,6 @@ bash-4.4# mysql -u root -p
 Найдите команду для выдачи статуса БД и **приведите в ответе** из ее вывода версию сервера БД.
 
 mysql> \s
---------------
-mysql  Ver 8.0.31 for Linux on x86_64 (MySQL Community Server - GPL)
-
-Connection id:          21
-Current database:
-Current user:           root@localhost
 
 Подключитесь к восстановленной БД и получите список таблиц из этой БД.
 
@@ -48,19 +32,6 @@ mysql> connect test_db
 **Приведите в ответе** количество записей с `price` > 300.
 
 mysql> select count(*) from orders where price>300;
-
-+----------+
-
-| count(*) |
-
-+----------+
-
-|        1 |
-
-+----------+
-
-1 row in set (0.00 sec)
-
 
 В следующих заданиях мы будем продолжать работу с данным контейнером.
 
