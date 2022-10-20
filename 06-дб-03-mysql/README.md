@@ -125,6 +125,22 @@ mysql> SELECT TABLE_NAME,ENGINE FROM information_schema.TABLES WHERE TABLE_SCHEM
 - Размер файла логов операций 100 Мб
 
 Приведите в ответе измененный файл `my.cnf`.
+```
+[mysqld]
+pid-file        = /var/run/mysqld/mysqld.pid
+socket          = /var/run/mysqld/mysqld.sock
+datadir         = /var/lib/mysql
+secure-file-priv= NULL
+
+innodb_buffer_pool_size=2G
+innodb_log_file_size=50M
+innodb_log_buffer_size=1М
+innodb_file_per_table = ON
+innodb_flush_method = O_DSYNC
+
+# Custom config should go here
+!includedir /etc/mysql/conf.d/
+```
 
 ---
 
