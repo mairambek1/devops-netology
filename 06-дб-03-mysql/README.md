@@ -3,7 +3,7 @@
 ## Задача 1
 
 Используя docker поднимите инстанс MySQL (версию 8). Данные БД сохраните в volume.
-
+---
 root@server1:~# docker pull mysql:8.0
 b52042432ab3: Pull complete
 Digest: sha256:12bae50f531fef9dc7726072446cd7c4b461eaa154611659c891a0d9f628684f
@@ -12,7 +12,7 @@ docker.io/library/mysql:8.0
 root@server1:~# docker volume create vol_mysql
 vol_mysql
 root@server1:~# docker run --rm --name mysql-docker -e MYSQL_ROOT_PASSWORD=mysql -ti -p 3306:3306 -v vol_mysql:/etc/mysql/ mysql:8.0
-
+---
 
 Изучите [бэкап БД](https://github.com/netology-code/virt-homeworks/tree/master/06-db-03-mysql/test_data) и 
 восстановитесь из него.
@@ -55,8 +55,8 @@ mysql> select count(*) from orders where price>300;
 
 # Ответ:
 ![img.png](msql1.png)
-![img.png](msql1.1.png)
 ![img.png](msql1.2.png)
+![img.png](msql1.3.png)
 
 ## Задача 2
 
