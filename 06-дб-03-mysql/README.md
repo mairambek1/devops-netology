@@ -68,7 +68,9 @@ mysql> flush privileges;
 ```    
 Используя таблицу INFORMATION_SCHEMA.USER_ATTRIBUTES получите данные по пользователю `test` и 
 **приведите в ответе к задаче**.
-
+```
+mysql> select * from INFORMATION_SCHEMA.USER_ATTRIBUTEs where user = 'test';
+```
 ![img.png](msql2.png)
 
 ## Задача 3
