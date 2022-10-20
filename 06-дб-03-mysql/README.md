@@ -3,36 +3,34 @@
 ## Задача 1
 
 Используя docker поднимите инстанс MySQL (версию 8). Данные БД сохраните в volume.
-
+```
 root@server1:~# docker pull mysql:8.0
-
 root@server1:~# docker volume create vol_mysql
-
 root@server1:~# docker run --rm --name mysql-docker -e MYSQL_ROOT_PASSWORD=mysql -ti -p 3306:3306 -v vol_mysql:/etc/mysql/ mysql:8.0
-
+```
 Изучите [бэкап БД](https://github.com/netology-code/virt-homeworks/tree/master/06-db-03-mysql/test_data) и 
 восстановитесь из него.
-
+```
 bash-4.4# mysql -u root -p test_db < /tmp/test_dump.sql;
-
+```
 Перейдите в управляющую консоль `mysql` внутри контейнера.
-
+```
 bash-4.4# mysql -u root -p
-
+```
 Используя команду `\h` получите список управляющих команд.
 
 Найдите команду для выдачи статуса БД и **приведите в ответе** из ее вывода версию сервера БД.
-
+```
 mysql> \s
-
+```
 Подключитесь к восстановленной БД и получите список таблиц из этой БД.
-
+```
 mysql> connect test_db
-
+```
 **Приведите в ответе** количество записей с `price` > 300.
-
+```
 mysql> select count(*) from orders where price>300;
-
+```
 В следующих заданиях мы будем продолжать работу с данным контейнером.
 
 # Ответ:
@@ -50,9 +48,23 @@ mysql> select count(*) from orders where price>300;
 - аттрибуты пользователя:
     - Фамилия "Pretty"
     - Имя "James"
+    
+Ответ:
+
+создание пользователя
+```
+create user 'test'@'localhost' 
+    identified with mysql_native_password by 'test-pass' 
+    with max_queries_per_hour 100
+    password expire interval 180 day 
+    failed_login_attempts 3 
+    attribute '{"fname": "James","lname": "Pretty"}';
+```
 
 Предоставьте привелегии пользователю `test` на операции SELECT базы `test_db`.
-    
+```
+mysql> grant select on test_db. to test@'localhost';
+```    
 Используя таблицу INFORMATION_SCHEMA.USER_ATTRIBUTES получите данные по пользователю `test` и 
 **приведите в ответе к задаче**.
 
