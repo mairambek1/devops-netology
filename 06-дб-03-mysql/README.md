@@ -48,11 +48,17 @@ mysql> connect test_db
 **Приведите в ответе** количество записей с `price` > 300.
 
 mysql> select count(*) from orders where price>300;
+
 +----------+
+
 | count(*) |
+
 +----------+
+
 |        1 |
+
 +----------+
+
 1 row in set (0.00 sec)
 
 
