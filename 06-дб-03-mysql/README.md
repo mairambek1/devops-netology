@@ -56,6 +56,8 @@ mysql> select count(*) from orders where price>300;
 Используя таблицу INFORMATION_SCHEMA.USER_ATTRIBUTES получите данные по пользователю `test` и 
 **приведите в ответе к задаче**.
 
+![img.png](msql2.png)
+
 ## Задача 3
 
 Установите профилирование `SET profiling = 1`.
