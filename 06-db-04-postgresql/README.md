@@ -15,8 +15,8 @@
 - вывода описания содержимого таблиц
 - выхода из psql
 
-![img.png](postgres1.png)
-![img.png](postgres1.1.png)
+![img.png](postgre1.png)
+![img.png](postgre1.1.png)
 ## Задача 2
 
 Используя `psql` создайте БД `test_database`.
