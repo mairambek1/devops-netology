@@ -4,8 +4,17 @@
 
 Используя docker поднимите инстанс PostgreSQL (версию 13). Данные БД сохраните в volume.
 
-Подключитесь к БД PostgreSQL используя `psql`.
+```
+root@server1:~# docker pull postgres:13
+root@server1:~# docker volume create vol_postgres
+root@server1:~# docker run --rm --name pg-docker -e POSTGRES_PASSWORD=postgres -ti -p 5432:5432 -v vol_postgres:/var/lib/postgresql/data postgres:13
+root@server1:~# docker exec -it pg-docker bash
+```
 
+Подключитесь к БД PostgreSQL используя `psql`.
+```
+root@acb126381a74:/# psql -h localhost -p 5432 -U postgres -W
+```
 Воспользуйтесь командой `\?` для вывода подсказки по имеющимся в `psql` управляющим командам.
 
 **Найдите и приведите** управляющие команды для:
