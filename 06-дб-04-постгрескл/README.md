@@ -43,7 +43,33 @@ root@acb126381a74:/# psql -h localhost -p 5432 -U postgres -W
 с наибольшим средним значением размера элементов в байтах.
 
 **Приведите в ответе** команду, которую вы использовали для вычисления и полученный результат.
+Ответ:
+```
+postgres=# CREATE DATABASE test_database;
+postgres=# \c test_database
+test_database=# \i /tmp/test_dump.sql
+test_database=# ANALYZE VERBOSE public.orders;
+select * from pg_stats where tablename = 'orders'
+schemaname | tablename | attname | inherited | null_frac | avg_width | n_distinct | most_common_vals | most_common_freqs |                                                                 histogram_bounds
+                                 | correlation | most_common_elems | most_common_elem_freqs | elem_count_histogram
+------------+-----------+---------+-----------+-----------+-----------+------------+------------------+-------------------+------------------------------------------------------------------------------------------------------------------
+---------------------------------+-------------+-------------------+------------------------+----------------------
+ public     | orders    | id      | f         |         0 |         4 |         -1 |                  |                   | {1,2,3,4,5,6,7,8}
+                                 |           1 |                   |                        |
+ public     | orders    | title   | f         |         0 |        16 |         -1 |                  |                   | {"Adventure psql time",Dbiezdmin,"Log gossips","Me and my bash-pet","My little database","Server gravity falls","
+WAL never lies","War and peace"} |  -0.3809524 |                   |                        |
+ public     | orders    | price   | f         |         0 |         4 |     -0.875 | {300}            | {0.25}            | {100,123,499,500,501,900}
+                                 |   0.5952381 |                   |                        |
+(3 rows)
 
+SELECT tablename, attname, avg_width FROM pg_stats WHERE tablename='orders' ORDER BY avg_width DESC LIMIT 1;
+tablename | attname | avg_width
+-----------+---------+-----------
+ orders    | title   |        16
+(1 row)
+
+```
+![img.png](postgre2.png)
 ## Задача 3
 
 Архитектор и администратор БД выяснили, что ваша таблица orders разрослась до невиданных размеров и
