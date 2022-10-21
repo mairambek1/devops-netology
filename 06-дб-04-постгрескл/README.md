@@ -92,13 +92,23 @@ price integer DEFAULT 0
 )
 PARTITION BY RANGE (price);
 ```
-![img.png](postgre3.png)
 ## Задача 4
 
 Используя утилиту `pg_dump` создайте бекап БД `test_database`.
+```
+root@173cdc0e9c5f:/# pg_dump -U postgres test_database > /opt/test_database4.dump
+```
 
 Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца `title` для таблиц `test_database`?
+```
+CREATE TABLE public.orders (
+    id integer NOT NULL,
+    title character varying(80) UNIQUE NOT NULL,
+    price integer DEFAULT 0
+);
+```
 
+![img.png](postgre4.png)
 ---
 
 ### Как cдавать задание
