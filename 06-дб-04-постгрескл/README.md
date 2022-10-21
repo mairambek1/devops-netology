@@ -77,9 +77,22 @@ tablename | attname | avg_width
 провести разбиение таблицы на 2 (шардировать на orders_1 - price>499 и orders_2 - price<=499).
 
 Предложите SQL-транзакцию для проведения данной операции.
+```
+CREATE TABLE orders_1 (CHECK (price < 499)) INHERITS (orders);
+CREATE TABLE orders_2 (CHECK (price >= 499)) INHERITS (orders);
+```
 
 Можно ли было изначально исключить "ручное" разбиение при проектировании таблицы orders?
-
+да можно было
+```
+CREATE TABLE public.orders_new (
+id integer NOT NULL,
+title character varying(80) NOT NULL,
+price integer DEFAULT 0
+)
+PARTITION BY RANGE (price);
+```
+![img.png](postgre3.png)
 ## Задача 4
 
 Используя утилиту `pg_dump` создайте бекап БД `test_database`.
