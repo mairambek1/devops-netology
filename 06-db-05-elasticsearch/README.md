@@ -169,6 +169,7 @@ yellow open   ind-3 AtuAVxBFQBKFoljj08eRTg   4   2          0            0      
 Состояние yellow по кластеру связано с тем, что есть unassigned шарды.
 
 Удалите все индексы.
+
 Ответ:
 ```
 [root@70abd1df8029 /]#  curl -X DELETE 'http://127.0.0.1:9200/ind-1'
@@ -195,7 +196,28 @@ yellow open   ind-3 AtuAVxBFQBKFoljj08eRTg   4   2          0            0      
 Используя API [зарегистрируйте](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-register-repository.html#snapshots-register-repository) 
 данную директорию как `snapshot repository` c именем `netology_backup`.
 
+Ответ:
+```
+[root@70abd1df8029 /]# curl -XPOST localhost:9200/_snapshot/netology_backup?pretty -H 'Content-Type: application/json' -d'{"type": "fs", "settings": { "location":"myrepo" }}'
+{
+  "acknowledged" : true
+}
+```
+
 **Приведите в ответе** запрос API и результат вызова API для создания репозитория.
+
+Ответ:
+```
+[root@70abd1df8029 /]# curl -X GET 'http://localhost:9200/_snapshot/netology_backup?pretty'
+{
+  "netology_backup" : {
+    "type" : "fs",
+    "settings" : {
+      "location" : "myrepo"
+    }
+  }
+}
+```
 
 Создайте индекс `test` с 0 реплик и 1 шардом и **приведите в ответе** список индексов.
 
