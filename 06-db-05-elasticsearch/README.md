@@ -258,7 +258,14 @@ yellow open   ind-3 AtuAVxBFQBKFoljj08eRTg   4   2          0            0      
 [Создайте `snapshot`](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html) 
 состояния кластера `elasticsearch`.
 
+Ответ:
+```
+[root@70abd1df8029 /]# curl -X PUT localhost:9200/_snapshot/netology_backup/elasticsearch?wait_for_completion=true
+{"snapshot":{"snapshot":"elasticsearch","uuid":"X3yRu8yXRVyyHF1gLWFSNA","version_id":7110199,"version":"7.11.1","indices":["test"],"data_streams":[],"include_global_state":true,"state":"SUCCESS","start_time":"2022-10-31T08:20:29.185Z","start_time_in_millis":1667204429185,"end_time":"2022-10-31T08:20:29.385Z","end_time_in_millis":1667204429385,"duration_in_millis":200,"failures":[],"shards":{"total":1,"failed":0,"successful":1}}}
+```
+
 **Приведите в ответе** список файлов в директории со `snapshot`ами.
+
 
 Удалите индекс `test` и создайте индекс `test-2`. **Приведите в ответе** список индексов.
 
