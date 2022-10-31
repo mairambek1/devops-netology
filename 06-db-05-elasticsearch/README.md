@@ -55,24 +55,23 @@ CMD ["bin/elasticsearch"]
 - ответ `elasticsearch` на запрос пути `/` в json виде
 Ответ:
 ```
-[root@70abd1df8029 /]# curl -X GET "http://localhost:9200/_cluster/health?pretty"
+[root@70abd1df8029 /]# curl -X GET "localhost:9200/?pretty"
 {
+  "name" : "70abd1df8029",
   "cluster_name" : "netology_test",
-  "status" : "green",
-  "timed_out" : false,
-  "number_of_nodes" : 1,
-  "number_of_data_nodes" : 1,
-  "active_primary_shards" : 0,
-  "active_shards" : 0,
-  "relocating_shards" : 0,
-  "initializing_shards" : 0,
-  "unassigned_shards" : 0,
-  "delayed_unassigned_shards" : 0,
-  "number_of_pending_tasks" : 0,
-  "number_of_in_flight_fetch" : 0,
-  "task_max_waiting_in_queue_millis" : 0,
-  "active_shards_percent_as_number" : 100.0
-
+  "cluster_uuid" : "XocEXjlVSqyk66tdnkuCEQ",
+  "version" : {
+    "number" : "7.11.1",
+    "build_flavor" : "default",
+    "build_type" : "tar",
+    "build_hash" : "ff17057114c2199c9c1bbecc727003a907c0db7a",
+    "build_date" : "2021-02-15T13:44:09.394032Z",
+    "build_snapshot" : false,
+    "lucene_version" : "8.7.0",
+    "minimum_wire_compatibility_version" : "6.8.0",
+    "minimum_index_compatibility_version" : "6.0.0-beta1"
+  },
+  "tagline" : "You Know, for Search"
 ```
 
 Подсказки:
