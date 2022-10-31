@@ -266,6 +266,20 @@ yellow open   ind-3 AtuAVxBFQBKFoljj08eRTg   4   2          0            0      
 
 **Приведите в ответе** список файлов в директории со `snapshot`ами.
 
+Ответ:
+```
+[root@70abd1df8029 myrepo]# ls -la
+total 56
+drwxr-xr-x 3 elasticsearch elasticsearch  4096 Oct 31 08:20 .
+drwxr-xr-x 1 elasticsearch elasticsearch  4096 Oct 31 08:07 ..
+-rw-r--r-- 1 elasticsearch elasticsearch   437 Oct 31 08:20 index-0
+-rw-r--r-- 1 elasticsearch elasticsearch     8 Oct 31 08:20 index.latest
+drwxr-xr-x 3 elasticsearch elasticsearch  4096 Oct 31 08:20 indices
+-rw-r--r-- 1 elasticsearch elasticsearch 31037 Oct 31 08:20 meta-X3yRu8yXRVyyHF1gLWFSNA.dat
+-rw-r--r-- 1 elasticsearch elasticsearch   269 Oct 31 08:20 snap-X3yRu8yXRVyyHF1gLWFSNA.dat
+```
+
+
 
 Удалите индекс `test` и создайте индекс `test-2`. **Приведите в ответе** список индексов.
 
