@@ -99,6 +99,39 @@ https://hub.docker.com/r/momukeev/test-docker
 | ind-2 | 1 | 2 |
 | ind-3 | 2 | 4 |
 
+Ответ:
+```
+[root@70abd1df8029 /]# curl -X PUT "localhost:9200/ind-1?pretty" -H 'Content-Type: application/json' -d'
+{
+>   "settings": {
+>     "number_of_shards": 1,
+>     "number_of_replicas": 0
+>   }
+> }
+
+```
+```
+[root@70abd1df8029 /]# curl -X PUT "localhost:9200/ind-2?pretty" -H 'Content-Type: application/json' -d'
+> {
+>   "settings": {
+>     "number_of_shards": 2,
+>     "number_of_replicas": 1
+>   }
+> }
+
+```
+```
+[root@70abd1df8029 /]# curl -X PUT "localhost:9200/ind-3?pretty" -H 'Content-Type: application/json' -d'
+> {
+>   "settings": {
+>     "number_of_shards": 4,
+>     "number_of_replicas": 2
+>   }
+> }
+> '
+
+```
+
 Получите список индексов и их статусов, используя API и **приведите в ответе** на задание.
 
 Получите состояние кластера `elasticsearch`, используя API.
