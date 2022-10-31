@@ -283,10 +283,44 @@ drwxr-xr-x 3 elasticsearch elasticsearch  4096 Oct 31 08:20 indices
 
 Удалите индекс `test` и создайте индекс `test-2`. **Приведите в ответе** список индексов.
 
+Ответ:
+```
+[root@70abd1df8029 ~]# curl -X DELETE 'http://localhost:9200/test?pretty'
+{
+  "acknowledged" : true
+}
+[root@70abd1df8029 ~]# curl -X PUT localhost:9200/test-2?pretty -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 1,  "number_of_replicas": 0 }}'
+{
+  "acknowledged" : true,
+  "shards_acknowledged" : true,
+  "index" : "test-2"
+}
+[root@70abd1df8029 ~]#
+```
+
 [Восстановите](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-restore-snapshot.html) состояние
 кластера `elasticsearch` из `snapshot`, созданного ранее. 
 
+Ответ:
+```
+[root@70abd1df8029 ~]# curl -X POST localhost:9200/_snapshot/netology_backup/elasticsearch/_restore?pretty -H 'Content-Type: application/json' -d'{"include_global_state":true}'
+{
+  "accepted" : true
+}
+[root@70abd1df8029 ~]#
+```
+
 **Приведите в ответе** запрос к API восстановления и итоговый список индексов.
+
+Ответ:
+```
+[root@70abd1df8029 ~]# curl -X GET http://localhost:9200/_cat/indices?v
+health status index  uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   test-2 zpVvJsi-SLCv3i2EHiKLxQ   1   0          0            0       208b           208b
+green  open   test   Zf_MX4HbRX6ZfEKyvXaqMw   1   0          0            0       208b           208b
+[root@70abd1df8029 ~]#
+
+```
 
 Подсказки:
 - возможно вам понадобится доработать `elasticsearch.yml` в части директивы `path.repo` и перезапустить `elasticsearch`
