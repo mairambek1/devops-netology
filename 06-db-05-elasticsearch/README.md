@@ -134,11 +134,50 @@ https://hub.docker.com/r/momukeev/test-docker
 
 Получите список индексов и их статусов, используя API и **приведите в ответе** на задание.
 
+```
+[root@70abd1df8029 /]# curl -X GET -u undefined:$ESPASS "localhost:9200/_cat/indices/ind-*?v=true&s=index&pretty"
+health status index uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+green  open   ind-1 lN7XX6Y5R96ha0FD7v6Qzw   1   0          0            0       208b           208b
+yellow open   ind-2 rIX2NxYKSEmF5W8PMzeH3A   2   1          0            0       416b           416b
+yellow open   ind-3 AtuAVxBFQBKFoljj08eRTg   4   2          0            0       832b           832b
+```
+
 Получите состояние кластера `elasticsearch`, используя API.
 
+```
+[root@70abd1df8029 /]# curl -X GET -u undefined:$ESPASS "localhost:9200/_cluster/health?pretty"
+{
+  "cluster_name" : "netology_test",
+  "status" : "yellow",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 7,
+  "active_shards" : 7,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 10,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 41.17647058823529
+}
+```
+
 Как вы думаете, почему часть индексов и кластер находится в состоянии yellow?
+Состояние yellow по кластеру связано с тем, что есть unassigned шарды.
 
 Удалите все индексы.
+Ответ:
+```
+[root@70abd1df8029 /]#  curl -X DELETE 'http://127.0.0.1:9200/ind-1'
+{"acknowledged":true}
+[root@70abd1df8029 /]# curl -X DELETE 'http://127.0.0.1:9200/ind-2'
+{"acknowledged":true}
+[root@70abd1df8029 /]# curl -X DELETE 'http://127.0.0.1:9200/ind-3'
+{"acknowledged":true}
+```
 
 **Важно**
 
