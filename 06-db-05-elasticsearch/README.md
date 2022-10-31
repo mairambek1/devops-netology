@@ -19,8 +19,61 @@
 
 В ответе приведите:
 - текст Dockerfile манифеста
+Ответ:
+```
+FROM centos:centos7
+
+RUN yum -y install wget; yum clean all && \
+        groupadd --gid 1000 elasticsearch && \
+        adduser --uid 1000 --gid 1000 --home /usr/share/elasticsearch elasticsearch && \
+        mkdir /var/lib/elasticsearch/ && \
+        chown -R 1000:1000 /var/lib/elasticsearch/
+
+USER 1000:1000
+
+WORKDIR /usr/share/elasticsearch
+
+ENV EL_VER=8.0.1
+
+RUN wget -q https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-${EL_VER}-linux-x86_64.tar.gz && \
+        tar -xzf elasticsearch-${EL_VER}-linux-x86_64.tar.gz && \
+        cp -rp elasticsearch-${EL_VER}/* ./ && \
+        rm -rf elasticsearch-${EL_VER}*
+
+COPY ./config/elasticsearch.yml /usr/share/elasticsearch/config/
+
+EXPOSE 9200
+
+CMD ["bin/elasticsearch"]
+```
 - ссылку на образ в репозитории dockerhub
+Ответ:
+```
+
+```
+
 - ответ `elasticsearch` на запрос пути `/` в json виде
+Ответ:
+```
+[root@70abd1df8029 /]# curl -X GET "http://localhost:9200/_cluster/health?pretty"
+{
+  "cluster_name" : "netology_test",
+  "status" : "green",
+  "timed_out" : false,
+  "number_of_nodes" : 1,
+  "number_of_data_nodes" : 1,
+  "active_primary_shards" : 0,
+  "active_shards" : 0,
+  "relocating_shards" : 0,
+  "initializing_shards" : 0,
+  "unassigned_shards" : 0,
+  "delayed_unassigned_shards" : 0,
+  "number_of_pending_tasks" : 0,
+  "number_of_in_flight_fetch" : 0,
+  "task_max_waiting_in_queue_millis" : 0,
+  "active_shards_percent_as_number" : 100.0
+
+```
 
 Подсказки:
 - при сетевых проблемах внимательно изучите кластерные и сетевые настройки в elasticsearch.yml
