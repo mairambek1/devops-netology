@@ -49,11 +49,10 @@ CMD ["bin/elasticsearch"]
 - ссылку на образ в репозитории dockerhub
 Ответ:
 ```
-
+https://hub.docker.com/r/momukeev/test-docker
 ```
 
-- ответ `elasticsearch` на запрос пути `/` в json виде
-Ответ:
+- ответ `elasticsearch` на запрос пути `/` в json виде:
 ```
 [root@70abd1df8029 /]# curl -X GET "localhost:9200/?pretty"
 {
