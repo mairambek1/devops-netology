@@ -221,6 +221,40 @@ yellow open   ind-3 AtuAVxBFQBKFoljj08eRTg   4   2          0            0      
 
 Создайте индекс `test` с 0 реплик и 1 шардом и **приведите в ответе** список индексов.
 
+Ответ:
+```
+[root@70abd1df8029 /]# curl -X PUT localhost:9200/test -H 'Content-Type: application/json' -d'{ "settings": { "number_of_shards": 1,  "number_of_replicas": 0 }}'
+{"acknowledged":true,"shards_acknowledged":true,"index":"test"}
+[root@70abd1df8029 /]# curl -X GET 'http://localhost:9200/test?pretty'
+{
+  "test" : {
+    "aliases" : { },
+    "mappings" : { },
+    "settings" : {
+      "index" : {
+        "routing" : {
+          "allocation" : {
+            "include" : {
+              "_tier_preference" : "data_content"
+            }
+          }
+        },
+        "number_of_shards" : "1",
+        "provided_name" : "test",
+        "creation_date" : "1667204277202",
+        "number_of_replicas" : "0",
+        "uuid" : "vdouR7MbT_OA5H6j0JfkIw",
+        "version" : {
+          "created" : "7110199"
+        }
+      }
+    }
+  }
+}
+[root@70abd1df8029 /]#
+
+```
+
 [Создайте `snapshot`](https://www.elastic.co/guide/en/elasticsearch/reference/current/snapshots-take-snapshot.html) 
 состояния кластера `elasticsearch`.
 
