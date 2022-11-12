@@ -76,6 +76,18 @@ on linux_amd64
 В виде результата этой задачи приложите вывод `--version` двух версий терраформа доступных на вашем компьютере 
 или виртуальной машине.
 
+Ответ:
+```
+root@server1:~# terraform -version
+Terraform v1.3.4
+on linux_amd64
+```
+```
+root@server1:~# terraform2 -version
+Terraform v1.4.0
+on linux_amd64
+```
+
 ---
 
 ### Как cдавать задание
