@@ -20,7 +20,7 @@
 
 Ответ:
 
-[playbook](./playbook/
+[08-ansible-02-playbook](https://github.com/mairambek1/devops-netology/tree/main/08-ansible-02-playbook/playbook).
 
 ---
 
