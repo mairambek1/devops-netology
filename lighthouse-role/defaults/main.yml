@@ -1,0 +1,3 @@
+---
+# defaults file for lighthouse-role
+lighthouse_dir: "/home/{{ ansible_user_id }}/lighthouse"
