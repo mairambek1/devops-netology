@@ -3,17 +3,11 @@
 ## Подготовка к выполнению
 1. Установите molecule: `pip3 install "molecule==3.5.2"`
 ```
-Installing collected packages: PyYAML, molecule
-  Attempting uninstall: PyYAML
-    Found existing installation: PyYAML 6.0
-    Uninstalling PyYAML-6.0:
-      Successfully uninstalled PyYAML-6.0
-  Attempting uninstall: molecule
-    Found existing installation: molecule 4.0.4
-    Uninstalling molecule-4.0.4:
-      Successfully uninstalled molecule-4.0.4
-Successfully installed PyYAML-5.4.1 molecule-3.5.2
-
+root@server1:/opt/vector-role# molecule --version
+molecule 3.5.2 using python 3.8
+    ansible:2.12.10
+    delegated:3.5.2 from molecule
+    docker:2.1.0 from molecule_docker requiring collections: community.docker>=3.0.2 ansible.posix>=1.4.0
 ```
 2. Выполните `docker pull aragast/netology:latest` -  это образ с podman, tox и несколькими пайтонами (3.7 и 3.9) внутри
 ```
