@@ -96,6 +96,26 @@ verifier:
 ```
 4. Добавьте несколько assert'ов в verify.yml файл для  проверки работоспособности vector-role (проверка, что конфиг валидный, проверка успешности запуска, etc). Запустите тестирование роли повторно и проверьте, что оно прошло успешно.
 ```
+PLAY [Destroy] *****************************************************************
+
+TASK [Set async_dir for HOME env] **********************************************
+ok: [localhost]
+
+TASK [Destroy molecule instance(s)] ********************************************
+changed: [localhost] => (item=centos8)
+changed: [localhost] => (item=centos7)
+changed: [localhost] => (item=ubuntu)
+
+TASK [Wait for instance(s) deletion to complete] *******************************
+ok: [localhost] => (item=centos8)
+ok: [localhost] => (item=centos7)
+ok: [localhost] => (item=ubuntu)
+
+TASK [Delete docker networks(s)] ***********************************************
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
 ```
 5. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
