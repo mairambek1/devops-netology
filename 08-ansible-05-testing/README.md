@@ -3,6 +3,17 @@
 ## Подготовка к выполнению
 1. Установите molecule: `pip3 install "molecule==3.5.2"`
 ```
+Installing collected packages: PyYAML, molecule
+  Attempting uninstall: PyYAML
+    Found existing installation: PyYAML 6.0
+    Uninstalling PyYAML-6.0:
+      Successfully uninstalled PyYAML-6.0
+  Attempting uninstall: molecule
+    Found existing installation: molecule 4.0.4
+    Uninstalling molecule-4.0.4:
+      Successfully uninstalled molecule-4.0.4
+Successfully installed PyYAML-5.4.1 molecule-3.5.2
+
 ```
 2. Выполните `docker pull aragast/netology:latest` -  это образ с podman, tox и несколькими пайтонами (3.7 и 3.9) внутри
 ```
