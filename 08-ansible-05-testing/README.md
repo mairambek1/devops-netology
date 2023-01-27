@@ -24,6 +24,9 @@ aragast/netology        latest    b453a84e3f7a   3 months ago    2.46GB
 1. Запустите  `molecule test -s centos7` внутри корневой директории clickhouse-role, посмотрите на вывод команды.
 2. Перейдите в каталог с ролью vector-role и создайте сценарий тестирования по умолчанию при помощи `molecule init scenario --driver-name docker`.
 ```
+root@server1:~/vector-role# molecule init scenario --driver-name docker
+INFO     Initializing new scenario default...
+INFO     Initialized scenario in /root/vector-role/molecule/default successfully.
 ```
 3. Добавьте несколько разных дистрибутивов (centos:8, ubuntu:latest) для инстансов и протестируйте роль, исправьте найденные ошибки, если они есть.
 ```
