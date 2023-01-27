@@ -123,6 +123,7 @@ localhost                  : ok=3    changed=1    unreachable=0    failed=0    s
 
 1. Добавьте в директорию с vector-role файлы из [директории](./example)
 2. Запустите `docker run --privileged=True -v <path_to_repo>:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash`, где path_to_repo - путь до корня репозитория с vector-role на вашей файловой системе.
+3. Внутри контейнера выполните команду `tox`, посмотрите на вывод.
 ```
 root@server1:/opt/vector-role# docker run --privileged=True -v /opt/vector-role/:/opt/vector-role -w /opt/vector-role -it aragast/netology:latest /bin/bash
 [root@cabb7a63dc55 vector-role]# tox
@@ -152,8 +153,6 @@ ERROR:   py37-ansible30: commands failed
 ERROR:   py39-ansible210: InvocationError for command /opt/vector-role/.tox/py39-ansible210/bin/python -m pip freeze (exited with code 1)
 ERROR:   py39-ansible30: Invocation
 ```
-
-3. Внутри контейнера выполните команду `tox`, посмотрите на вывод.
 5. Создайте облегчённый сценарий для `molecule` с драйвером `molecule_podman`. Проверьте его на исполнимость.
 6. Пропишите правильную команду в `tox.ini` для того чтобы запускался облегчённый сценарий.
 8. Запустите команду `tox`. Убедитесь, что всё отработало успешно.
