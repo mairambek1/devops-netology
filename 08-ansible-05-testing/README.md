@@ -17,12 +17,9 @@ Successfully installed PyYAML-5.4.1 molecule-3.5.2
 ```
 2. Выполните `docker pull aragast/netology:latest` -  это образ с podman, tox и несколькими пайтонами (3.7 и 3.9) внутри
 ```
-root@server1:~# docker pull aragast/netology:latest
-latest: Pulling from aragast/netology
-Digest: sha256:e44f93d3d9880123ac8170d01bd38ea1cd6c5174832b1782ce8f97f13e695ad5
-Status: Image is up to date for aragast/netology:latest
-docker.io/aragast/netology:latest
-
+root@server1:/opt/vector-role# docker images
+REPOSITORY              TAG       IMAGE ID       CREATED         SIZE
+aragast/netology        latest    b453a84e3f7a   3 months ago    2.46GB
 ```
 ## Основная часть
 
