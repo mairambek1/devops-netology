@@ -75,11 +75,39 @@ services:
 ```
 4. Проведите запуск playbook на окружении из `prod.yml`. Зафиксируйте полученные значения `some_fact` для каждого из `managed host`.
 ```
-https://github.com/mairambek1/devops-netology
+root@server1:~/mnt-homeworks/08-ansible-01-base/playbook# ansible-playbook -i inventory/prod.yml -v site.yml
+Using /etc/ansible/ansible.cfg as config file
+
+PLAY [Print os facts] ***********************************************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Print OS] *****************************************************************************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": "Ubuntu"
+}
+
+TASK [Print fact] ***************************************************************************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": "all default fact"
+}
+
+PLAY RECAP **********************************************************************************************************************************************************************************************************************************
+centos7                    : ok=3    changed=0    unreachable=3    failed=0    skipped=0    rescued=0    ignored=0
+ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
 ```
 5. Добавьте факты в `group_vars` каждой из групп хостов так, чтобы для `some_fact` получились следующие значения: для `deb` - 'deb default fact', для `el` - 'el default fact'.
 ```
-https://github.com/mairambek1/devops-netology
+root@server1:~/mnt-homeworks/08-ansible-01-base/playbook# cat group_vars/deb/examp.yml
+---
+  some_fact: "deb default fact"
+
+root@server1:~/mnt-homeworks/08-ansible-01-base/playbook# cat group_vars/el/examp.yml
+---
+  some_fact: "el default fact"
 ```
 6.  Повторите запуск playbook на окружении `prod.yml`. Убедитесь, что выдаются корректные значения для всех хостов.
 ```
