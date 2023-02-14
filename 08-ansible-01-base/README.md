@@ -51,7 +51,9 @@ y
 ```
 2. Найдите файл с переменными (group_vars) в котором задаётся найденное в первом пункте значение и поменяйте его на 'all default fact'.
 ```
-https://github.com/mairambek1/devops-netology
+root@server1:~/mnt-homeworks/08-ansible-01-base/playbook# cat group_vars/all/examp.yml
+---
+  some_fact: all default fact
 ```
 3. Воспользуйтесь подготовленным (используется `docker`) или создайте собственное окружение для проведения дальнейших испытаний.
 ```
