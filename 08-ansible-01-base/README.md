@@ -2,8 +2,28 @@
 
 ## Подготовка к выполнению
 1. Установите ansible версии 2.10 или выше.
+```
+root@server1:/home/vagrant/.ansible# ansible --version
+ansible [core 2.13.7]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /root/.local/lib/python3.8/site-packages/ansible
+  ansible collection location = /root/.ansible/collections:/usr/share/ansible/collections
+  executable location = /home/vagrant/.local/bin/ansible
+  python version = 3.8.10 (default, Nov 14 2022, 12:59:47) [GCC 9.4.0]
+  jinja version = 3.1.2
+  libyaml = True
+
+```
 2. Создайте свой собственный публичный репозиторий на github с произвольным именем.
+```
+https://github.com/mairambek1/devops-netology
+```
 3. Скачайте [playbook](./playbook/) из репозитория с домашним заданием и перенесите его в свой репозиторий.
+```
+root@server1:/home/vagrant/.ansible# ls
+ansible.yml  playbook  tmp
+```
 
 ## Основная часть
 1. Попробуйте запустить playbook на окружении из `test.yml`, зафиксируйте какое значение имеет факт `some_fact` для указанного хоста при выполнении playbook'a.
