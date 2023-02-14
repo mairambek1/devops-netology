@@ -238,9 +238,7 @@ root@server1:~/mnt-homeworks/08-ansible-01-base/playbook# cat inventory/prod.yml
 
 ```
 11. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь что факты `some_fact` для каждого из хостов определены из верных `group_vars`.
-```
-без создания отдельного group_vars -> получил для local из all
-```
+
 ```
 root@server1:~/mnt-homeworks/08-ansible-01-base/playbook# ansible-playbook -i inventory/prod.yml site.yml --ask-vault-pass
 Vault password:
@@ -278,9 +276,7 @@ localhost                  : ok=3    changed=0    unreachable=0    failed=0    s
 ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 ```
-```
-создал отдельный group-vars для local -> получил для local из local
-```
+
 12. Заполните `README.md` ответами на вопросы. Сделайте `git push` в ветку `master`. В ответе отправьте ссылку на ваш открытый репозиторий с изменённым `playbook` и заполненным `README.md`.
 
 ## Необязательная часть
