@@ -161,9 +161,16 @@ localhost                  : ok=3    changed=0    unreachable=0    failed=0    s
 ubuntu                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 
 ```
-7. При помощи `ansible-vault` зашифруйте факты в `group_vars/deb` и `group_vars/el` с паролем `netology`.
+7. При помощи `ansible-vault` зашифруйте факты в `group_vars/deb` и `group_vars/el` с паролем `netology`(у меня`vagrant`).
 ```
-https://github.com/mairambek1/devops-netology
+root@server1:~/mnt-homeworks/08-ansible-01-base/playbook# ansible-vault encrypt group_vars/deb/examp.yml
+New Vault password:
+Confirm New Vault password:
+Encryption successful
+root@server1:~/mnt-homeworks/08-ansible-01-base/playbook# ansible-vault encrypt group_vars/el/examp.yml
+New Vault password:
+Confirm New Vault password:
+Encryption successful
 ```
 8. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь в работоспособности.
 ```
