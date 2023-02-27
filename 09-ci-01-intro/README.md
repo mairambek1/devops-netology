@@ -4,6 +4,13 @@
 1. Получить бесплатную [JIRA](https://www.atlassian.com/ru/software/jira/free)
 2. Настроить её для своей "команды разработки"
 3. Создать доски kanban и scrum
+```
+kanban = Projects -> Create project -> Kanban -> Use template -> Company-managed -> Create project
+```
+
+```
+scrum = Projects -> Create project -> Scrum -> Use template -> Company-managed -> Create project
+```
 
 ## Основная часть
 В рамках основной части необходимо создать собственные workflow для двух типов задач: bug и остальные типы задач. Задачи типа bug должны проходить следующий жизненный цикл:
