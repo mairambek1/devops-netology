@@ -1,0 +1,6 @@
+projectKey=mairambek
+serverUrl=http://51.250.68.108:9000
+serverVersion=9.1.0.47736
+dashboardUrl=http://51.250.68.108:9000/dashboard?id=mairambek
+ceTaskId=AYGPvaA9ETwtOpRZjKxU
+ceTaskUrl=http://51.250.68.108:9000/api/ce/task?id=AYGPvaA9ETwtOpRZjKxU
