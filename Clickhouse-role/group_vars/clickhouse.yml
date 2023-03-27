@@ -1,0 +1,4 @@
+---
+clickhouse_version: "latest"
+clickhouse_listen_host:
+  - "::"

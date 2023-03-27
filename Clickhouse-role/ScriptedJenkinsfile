@@ -1,0 +1,17 @@
+node("centos"){
+    stage("Git checkout"){
+        dir('Ansible-Clickhouse-Vector-Lighthouse'){
+            git branch: 'main', credentialsId: 'de9af9bd-539e-4d01-beff-8e6767ca2c22', url: 'git@github.com:nkiselyov/Ansible-Clickhouse-Vector-Lighthouse.git'
+        }
+    }
+    stage("Download Ansible roles"){
+        dir('Ansible-Clickhouse-Vector-Lighthouse'){
+            sh 'ansible-galaxy install -r requirements.yml -p roles --force'
+        }
+    }
+    stage("Run playbook"){
+        dir('Ansible-Clickhouse-Vector-Lighthouse'){
+            sh 'ansible-playbook site.yml -i inventory/prod.yml'
+        }
+    }
+}

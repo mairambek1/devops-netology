@@ -1,0 +1,18 @@
+vector_version: 0.22.1
+vector_clickhouse_ip: 192.168.77.185
+vector_config:
+  sources:
+    demo_logs:
+      type: demo_logs
+      format: syslog
+  sinks:
+    to_clickhouse:
+      type: clickhouse
+      inputs:
+        - demo_logs
+      database: "{{ clickhouse_db_name }}"
+      endpoint: "http://{{ vector_clickhouse_ip }}:8123"
+      table: "{{ clickhouse_table_name }}"
+      compression: gzip
+      healthcheck: true
+      skip_unknown_fields: true

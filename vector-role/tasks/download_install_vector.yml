@@ -1,0 +1,10 @@
+---
+- name: Vector | Download packages
+  ansible.builtin.get_url:
+    url: "{{ vector_url }}"
+    dest: "./vector-{{ vector_version }}-1.x86_64.rpm"
+- name: Vector | Install packages
+  become: true
+  ansible.builtin.yum:
+    name: "./vector-{{ vector_version }}-1.x86_64.rpm"
+    disable_gpg_check: true
