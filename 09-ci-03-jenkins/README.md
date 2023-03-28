@@ -18,8 +18,8 @@
 7. Проверить работоспособность, исправить ошибки, исправленный Pipeline вложить в репозиторий в файл `ScriptedJenkinsfile`.
 8. Отправить ссылку на репозиторий с ролью и Declarative Pipeline и Scripted Pipeline.
 
-[Ссылка на Declarative Pipeline](https://github.com/mairambek1/vector-role/blob/main/Jenkinsfile)
+[Ссылка на Declarative Pipeline](https://https://github.com/mairambek1/vector-tole/blob/main/Jenkinsfile)
 
-[Ссылка на Scripted Pipeline](https://github.com/mairambek1/Clickhouse-Vector-Lighthouse/blob/main/ScriptedJenkinsfile)
+[Ссылка на Scripted Pipeline](https://https://github.com/mairambek1/Clickhouse-Vector-Lighthouse/blob/main/ScriptedJenkinsfile)
 
 ---
