@@ -42,7 +42,7 @@
 
 ## Ответ:
 
-[Ссылка на Declarative Pipeline](https://github.com/mairambek1/example-teamcity.git)
+[Ссылка на репозитории teamcity](https://github.com/mairambek1/example-teamcity.git)
 
 ---
 
