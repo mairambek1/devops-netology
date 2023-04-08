@@ -9,7 +9,7 @@
 5. Сделайте fork [репозитория](https://github.com/aragastmatb/example-teamcity).
 6. Создайте VM (2CPU4RAM) и запустите [playbook](./infrastructure).
 
-![cloud.jpg](devops-netology/scrin/cloud.jpg)
+![img.png](cloud.jpg)
 
 ## Основная часть
 
