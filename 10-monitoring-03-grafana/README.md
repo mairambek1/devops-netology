@@ -77,7 +77,7 @@
 
 В решении задания - приведите листинг этого файла.
 
-[Листинг](prometheus_bashboard.json)
+[Листинг](prometheus_bashboard_listing.json)
 
 ---
 
