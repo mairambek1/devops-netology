@@ -20,7 +20,7 @@
 
 **Шаг 2.** Наполните его содержимым:
 
-```python
+```
 #!/usr/bin/python
 
 # Copyright: (c) 2018, Terry Jones <terry.jones@example.org>
