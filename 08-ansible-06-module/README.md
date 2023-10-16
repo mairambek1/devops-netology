@@ -160,7 +160,7 @@ if __name__ == '__main__':
 
 **Шаг 3.** Заполните файл в соответствии с требованиями Ansible так, чтобы он выполнял основную задачу: module должен создавать текстовый файл на удалённом хосте по пути, определённом в параметре `path`, с содержимым, определённым в параметре `content`.
 
-[my_module.py](https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_general.html#creating-a-module)
+[my_module.py]([https://github.com/mairambek1/mnt-homeworksmy_collection/my_namespace/yandex_cloud_elk/plugins/modules/my_module.py](https://github.com/mairambek1/mnt-homeworks/blob/MNT-video/my_collection/my_collection/yandex_cloud_elk/plugins/modules/my_module.py))
 
 **Шаг 4.** Проверьте module на исполняемость локально.
 
