@@ -164,7 +164,55 @@ if __name__ == '__main__':
 
 **Шаг 4.** Проверьте module на исполняемость локально.
 
+```python
+(venv) root@server1:~/ansible-hw/8_6/ansible$ python -m ansible.modules.my_module input.json
+
+{"changed": true, "original_message": "File created", "message": "File created", "invocation": {"module_args": {"path": "/tmp/test.txt", "content": "homework"}}}
+```
+json файл 
+
+```python
+(venv) root@server1:~/ansible-hw/8_6/ansible$ cat input.json 
+{
+    "ANSIBLE_MODULE_ARGS": {
+        "path": "/tmp/test.txt",
+        "content": "homework"
+    }
+```
+
 **Шаг 5.** Напишите single task playbook и используйте module в нём.
+Playbook
+
+```python
+(venv) root@server1:~/ansible-hw/8_6/ansible$ cat test_single_task.yml 
+---
+- name: Check module
+  hosts: localhost
+  tasks:
+    - name: Test
+      my_own_module:
+        path: "/tmp/test.txt"
+        content: "homework"
+```
+отве:
+
+```python
+(venv) root@server1:~/ansible-hw/8_6/ansible$ ansible-playbook test_single_task.yml 
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if you are modifying the Ansible engine, or trying out features under development. This is a
+rapidly changing source of code and can become unstable at any point.
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+PLAY [Check module] *********************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Test] *****************************************************************************************************************************************************************************************
+changed: [localhost]
+
+PLAY RECAP ******************************************************************************************************************************************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```
 
 **Шаг 6.** Проверьте через playbook на идемпотентность.
 
@@ -187,6 +235,53 @@ if __name__ == '__main__':
 **Шаг 15.** Установите collection из локального архива: `ansible-galaxy collection install <archivename>.tar.gz`.
 
 **Шаг 16.** Запустите playbook, убедитесь, что он работает.
+
+Ответ:
+
+```python
+root@server1:~/ansible-hw/8_6/my_namespace/yandex_cloud_elk$ ansible-galaxy collection build
+Created collection for my_namespace.yandex_cloud_elk at /home/user/ansible-hw/8_6/my_namespace/yandex_cloud_elk/my_namespace-yandex_cloud_elk-1.0.0.tar.gz
+root@server1:~/ansible-hw/8_6/my_namespace/yandex_cloud_elk$ cd ../..
+root@server1:~/ansible-hw/8_6$ mkdir play
+root@server1:~/ansible-hw/8_6$ cd play
+root@server1:~/ansible-hw/8_6/play$ ansible-galaxy collection install my_namespace-yandex_cloud_elk-1.0.0.tar.gz --force
+Starting galaxy collection install process
+Process install dependency map
+Starting collection install process
+Installing 'my_namespace.yandex_cloud_elk:1.0.0' to '/home/student/.ansible/collections/ansible_collections/my_namespace/yandex_cloud_elk'
+my_namespace.yandex_cloud_elk:1.0.0 was installed successfully
+root@server1:~/ansible-hw/8_6/play$ ansible-playbook site2.yml 
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+
+PLAY [Testing collection playbook] ******************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [my_namespace.yandex_cloud_elk.my_role : create file] **********************************************************************************************************************************
+changed: [localhost]
+
+PLAY RECAP ******************************************************************************************************************************************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+root@server1:~/ansible-hw/8_6/play$ cat /tmp/test.txt 
+Test playbook
+```
+Содержание site2.yml
+
+```
+---
+  - name: Testing collection playbook
+    hosts: localhost
+    collections:
+      - my_own_namespace.yandex_cloud_elk
+    roles:
+      - my_own_role
+    vars:
+      - path: "/tmp/test.txt"
+      - content: "Test playbook"
+```
+
 
 **Шаг 17.** В ответ необходимо прислать ссылки на collection и tar.gz архив, а также скриншоты выполнения пунктов 4, 6, 15 и 16.
 
