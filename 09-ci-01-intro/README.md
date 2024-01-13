@@ -22,6 +22,7 @@ scrum = Projects -> Create project -> Scrum -> Use template -> Company-managed -
 6. On test <-> On fix, Done
 7. Done <-> Closed, Open
 
+Ответ:
 ![img.png](ci1.png)
 
 Остальные задачи должны проходить по упрощённому workflow:
@@ -31,6 +32,7 @@ scrum = Projects -> Create project -> Scrum -> Use template -> Company-managed -
 4. On test <-> On develop, Done
 5. Done <-> Closed, Open
 
+Ответ:
 ![img.png](ci2.png)
    
 
@@ -39,6 +41,7 @@ scrum = Projects -> Create project -> Scrum -> Use template -> Company-managed -
 
 Если всё отработало в рамках ожидания - выгрузить схемы workflow для импорта в XML. Файлы с workflow приложить к решению задания.
 
+Ответ:
 [Workflow bag](bug.xml) [Workflow task](task.xml)
 
 ---
