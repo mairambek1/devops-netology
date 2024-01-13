@@ -22,6 +22,8 @@ scrum = Projects -> Create project -> Scrum -> Use template -> Company-managed -
 6. On test <-> On fix, Done
 7. Done <-> Closed, Open
 
+![img.png](ci1.png)
+
 Остальные задачи должны проходить по упрощённому workflow:
 1. Open -> On develop
 2. On develop <-> Open, Done develop
