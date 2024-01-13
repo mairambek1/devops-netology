@@ -39,7 +39,7 @@ scrum = Projects -> Create project -> Scrum -> Use template -> Company-managed -
 
 Если всё отработало в рамках ожидания - выгрузить схемы workflow для импорта в XML. Файлы с workflow приложить к решению задания.
 
-![img.png](bug.xml) ![img.png](task.xml)
+[Workflow bag](bug.xml) [Workflow task](task.xml)
 
 ---
 
